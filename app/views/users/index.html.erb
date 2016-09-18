@@ -1,5 +1,23 @@
 Facebook Users:
 <ul><% @users.each do |user| %>
-	<li><%= user.email %></li>
-<% end %>
+
+		<% if current_user == user || current_user.friends.include?(user) %>
+			<li><%= link_to user.email, user_path(user) %></li>
+		<% else %>
+		  <% if current_user.friend_requests.pluck(:friend_id).include?(user.id) || user.friend_requests.pluck(:friend_id).include?(current_user.id) %>
+      		<li><%= link_to user.email, user_path(user) %> | Pending Request</li>
+         <% else %>
+			<li><%= link_to user.email, user_path(user) %> |
+			<%= link_to "Add Friend", friend_requests_path(friend_id: user.id), method: :post %>
+			</li>
+		    <% end %>	
+		<% end %>
+	<% end %>
 </ul>
+
+<%= link_to 'Back to your profile', user_path(current_user) %>
+
+
+<%= render 'shared/error_messages', object: current_user %>
+
+<%= params.inspect %>
