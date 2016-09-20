@@ -1,7 +1,7 @@
-<h4>You are signed in as <%= current_user.email %>! </h4>
-
 <% if @user == current_user %>
-<%= render "notifications" %>
+	<h4>Welcome <%= current_user.email %>! </h4>
+	<%= render "notifications" %>
+	<%= render 'shared/post_form' %> 
 <% end %>
 
 <%= params.inspect %>

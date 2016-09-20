@@ -2,7 +2,7 @@ Facebook Users:
 <ul><% @users.each do |user| %>
 
 		<% if current_user == user || current_user.friends.include?(user) %>
-			<li><%= link_to user.email, user_path(user) %></li>
+			<li><%= link_to user.email, user_posts_path(user) %></li>
 		<% else %>
 		  <% if current_user.friend_requests.pluck(:friend_id).include?(user.id) || user.friend_requests.pluck(:friend_id).include?(current_user.id) %>
       		<li><%= link_to user.email, user_path(user) %> | Pending Request</li>

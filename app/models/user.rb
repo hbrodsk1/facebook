@@ -3,6 +3,7 @@ class User < ApplicationRecord
 	has_many :pending_friends, through: :friend_requests, source: :friend
 	has_many :friendships, dependent: :destroy
 	has_many :friends, through: :friendships
+  has_many :posts, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
