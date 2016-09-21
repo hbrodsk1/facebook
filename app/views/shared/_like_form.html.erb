@@ -1,0 +1,11 @@
+<% unless current_user.likes.pluck(:post_id).include?(post.id) %>
+      <%= form_tag likes_path do %>
+          <%= hidden_field_tag 'post_id', post.id %>
+          <%= submit_tag "Like", :class => "like_button" %>
+      <% end %>
+  <% else %>
+      <% like = post.likes.where(user_id: current_user.id).first %>
+      <div class="unlike_button">
+        <%= button_to "Unlike", like_path(like), method: :delete %>
+      </div>
+    <% end %>

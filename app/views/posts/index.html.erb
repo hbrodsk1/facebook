@@ -1,4 +1,7 @@
 <h4>All of <%= @user.email %>'s posts:</h4>
 <% @user.posts.order('created_at DESC').each do |post| %>
 	<li><%= post.content %></li>
-	<% end %>
+	<%= render 'shared/like_form', post: post %>
+	
+<% end %>
+

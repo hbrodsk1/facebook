@@ -4,6 +4,8 @@ class User < ApplicationRecord
 	has_many :friendships, dependent: :destroy
 	has_many :friends, through: :friendships
   has_many :posts, dependent: :destroy
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,10 +19,4 @@ class User < ApplicationRecord
   def remove_friend(friend)
     self.friends.destroy(friend)
   end
-
-#  def cook?(friend)
-#      self.friend_requests.each do |request|
-#        return true if request.friend_id == friend.id
-#      end
-#  end
 end
