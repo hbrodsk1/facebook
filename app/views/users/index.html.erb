@@ -1,23 +1,21 @@
 Facebook Users:
-<ul><% @users.each do |user| %>
-
+<% @users.each do |user| %>
+		<p><%= image_tag gravatar_url(user.email, 25), alt: "" %>
 		<% if current_user == user || current_user.friends.include?(user) %>
-			<li><%= link_to user.email, user_posts_path(user) %></li>
+			<%= link_to user.email, user_posts_path(user) %>
 		<% else %>
 		  <% if current_user.friend_requests.pluck(:friend_id).include?(user.id) || user.friend_requests.pluck(:friend_id).include?(current_user.id) %>
-      		<li><%= link_to user.email, user_path(user) %> | Pending Request</li>
+      		<%= link_to user.email, user_path(user) %> | Pending Request
          <% else %>
-			<li><%= link_to user.email, user_path(user) %> |
+			<%= link_to user.email, user_path(user) %> |
 			<%= link_to "Add Friend", friend_requests_path(friend_id: user.id), method: :post %>
-			</li>
-		    <% end %>	
+		 <% end %></p>
+		    
 		<% end %>
+		<p>--------------------------------------------------</p>
 	<% end %>
-</ul>
 
 <%= link_to 'Back to your profile', user_path(current_user) %>
 
 
 <%= render 'shared/error_messages', object: current_user %>
-
-<%= params.inspect %>
