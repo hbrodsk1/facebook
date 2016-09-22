@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 # Use devise
 gem 'devise'
+# User OmniAuth-Facebook to allow users to sign in using their Facebook credentials
+gem 'omniauth-facebook'
 
 
 # Use jquery as the JavaScript library
