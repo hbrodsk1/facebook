@@ -1,0 +1,8 @@
+<h3>Your feed:</h3>
+<% Post.all.order('created_at DESC').each do |post| %>
+	<% if Post.all.pluck(:user_id).include?(post.user_id) %>
+		<p><b><%= post.user.email %></b></p> says:
+		<p><%= post.content %></p>
+		-----------------------------------------------------
+	<% end %>
+<% end %>

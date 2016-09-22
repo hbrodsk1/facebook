@@ -1,7 +1,15 @@
 <h4>All of <%= @user.email %>'s posts:</h4>
 <% @user.posts.order('created_at DESC').each do |post| %>
 	<li><%= post.content %></li>
+	<p><b><%= link_to post.likes.count, likes_path(post_id: post.id) %></b> people like this post %></p>
 	<%= render 'shared/like_form', post: post %>
-	
+	<% post.comments.each do |comment| %>
+		<p><b><%= comment.user.email %> says:</b></p>
+		 <%= comment.content %>
+	<% end %>
+	<p>---------</p>
+		<b><p>Write your comment below...</p></b>
+	<%= render 'shared/comment_form', post: post %>
+	<p>---------------------------------------------------</p>
 <% end %>
 

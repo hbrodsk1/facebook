@@ -1,6 +1,7 @@
 <% unless current_user.likes.pluck(:post_id).include?(post.id) %>
       <%= form_tag likes_path do %>
           <%= hidden_field_tag 'post_id', post.id %>
+          <%= hidden_field_tag 'user_id', post.user.id %>
           <%= submit_tag "Like", :class => "like_button" %>
       <% end %>
   <% else %>

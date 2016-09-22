@@ -6,7 +6,9 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@posts = Post.all
 		@post = @user.posts.build
+		@comment = @post.comments.build
 	end
 
 end

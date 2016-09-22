@@ -1,5 +1,5 @@
 <% current_user.friends.each do |friend| %>
-	<li><%= friend.email %>
+	<li><%= link_to friend.email, user_posts_path(friend.id) %>
 		<%= link_to 'Delete Friend', friend_path(friend), method: "delete" %></li>
 
 <% end %>

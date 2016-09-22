@@ -1,0 +1,4 @@
+<h4>People who Liked th post</h4>
+<% @likes.each do |like| %>
+<li><%= link_to like.user.email, user_path(like.user.id) %></li>
+<% end %>
