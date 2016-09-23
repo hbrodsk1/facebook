@@ -9,10 +9,16 @@ class User < ApplicationRecord
   has_many :comments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+
+  # devise confirm! method overriden
+  def confirm!
+    welcome_message
+    super
+  end
 
   def friends_with?(y)
     return true if self.friends.include?(y)
@@ -27,5 +33,11 @@ class User < ApplicationRecord
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
     end 
+  end
+
+  private
+
+  def welcome_message
+    UserMailer.welcome_email(self).deliver
   end
 end

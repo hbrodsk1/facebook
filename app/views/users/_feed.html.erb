@@ -1,7 +1,7 @@
 <h3>Your feed:</h3>
 <% Post.all.order('created_at DESC').each do |post| %>
 	<% if current_user.friends.pluck(:friend_id).include?(post.user_id) || current_user.id == post.user_id %>
-		<p><b><%= post.user.email %></b></p> says:
+		<p><b><%= link_to post.user.email, user_posts_path(post.user) %></b></p> says:
 		<p><%= post.content %></p>
 		-----------------------------------------------------
 	<% end %>
