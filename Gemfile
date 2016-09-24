@@ -19,7 +19,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 # User OmniAuth-Facebook to allow users to sign in using their Facebook credentials
 gem 'omniauth-facebook'
-
+gem 'sendgrid-ruby'
+gem 'figaro'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
