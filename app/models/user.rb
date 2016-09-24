@@ -15,10 +15,10 @@ class User < ApplicationRecord
 
 
   # devise confirm! method overriden
-  def confirm!
-    welcome_message
-    super
-  end
+  #def confirm!
+   # welcome_message
+    #super
+  #end
 
   def friends_with?(y)
     return true if self.friends.include?(y)
