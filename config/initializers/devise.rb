@@ -248,7 +248,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "1779519812260758", "d8ae559784e946868f0861de262b83d2", callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  config.omniauth :facebook, "1779519812260758", "d8ae559784e946868f0861de262b83d2", callback_url: "http://boiling-eyrie-44020.herokuapp.com/users/auth/facebook/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
