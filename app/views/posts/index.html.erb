@@ -1,8 +1,9 @@
 <h4><%= link_to gravatar_for(@user), user_posts_path(@user) %>
 All of <%= link_to @user.email, user_posts_path(@user) %>'s posts:</h4>
+<p>---------------------------------------------------</p>
 <% @user.posts.order('created_at DESC').each do |post| %>
-	<li><%= post.content %></li>
-	<p><b><%= link_to post.likes.count, likes_path(post_id: post.id) %></b> people like this post %></p>
+	<li><h4><%= post.content %></h4></li>
+	<p><b><%= link_to pluralize(post.likes.count, "person"), likes_path(post_id: post.id)%></b> <%= post.likes.count == 1 ? 'likes' : 'like' %> this post</p>
 	<%= render 'shared/like_form', post: post %>
 	<% post.comments.each do |comment| %>
 		<p><b><%= link_to comment.user.email, user_posts_path(comment.user) %> says:</b></p>
