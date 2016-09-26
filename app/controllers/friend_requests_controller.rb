@@ -12,10 +12,10 @@ class FriendRequestsController < ApplicationController
 		@friend_request = current_user.friend_requests.new(friend_id: @friend.id)
 
 		if @friend_request.save
-			flash[:notice] = "Friend request sent!"
+			flash[:success] = "Friend request sent!"
 			redirect_to users_path
 		else
-			flash[:notice] = "Unable to request friend"
+			flash[:danger] = "Unable to request friend"
 			redirect_to users_path
 		end
 	end
@@ -25,7 +25,7 @@ class FriendRequestsController < ApplicationController
 		
 		@friend_request = FriendRequest.find_by_user_id_and_friend_id(params[:friend_id], params[:id])
 		if @friend_request.accept
-			flash[:notice] = "You and #{friend_email} are now friends!"
+			flash[:success] = "You and #{friend_email} are now friends!"
 			redirect_to user_path(current_user)
 		end
 
@@ -33,7 +33,7 @@ class FriendRequestsController < ApplicationController
 
 	def destroy
 		if @friend_request.destroy
-			flash[:notice] = "Request Declined"
+			flash[:danger] = "Request Declined"
 			redirect_to user_path(current_user)
 		end
 	end

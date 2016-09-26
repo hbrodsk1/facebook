@@ -10,14 +10,13 @@ class CommentsController < ApplicationController
 
 	def create
 		@user = current_user
-		#@post = Post.find(params[:post_id])
 		@comment = @user.comments.build(comment_params)
 
 		if @comment.save
 			flash[:success] = "Comment Posted!"
 			redirect_back(fallback_location: root_path)
 		else
-			flash[:notice] = "Could not post comment"
+			flash[:danger] = "Could not post comment: #{@comment.errors.full_messages}"
 			redirect_back(fallback_location: root_path)
 		end
 	end

@@ -13,7 +13,7 @@ class LikesController < ApplicationController
   		flash[:success] = "Post Liked!"
   		redirect_back(fallback_location: root_path)
   	else
-  		flash[:notice] = "Couldn't like post"
+  		flash[:danger] = "Couldn't like post"
   		redirect_back(fallback_location: root_path)
   	end
   end
